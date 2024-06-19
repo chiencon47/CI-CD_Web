@@ -41,5 +41,7 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./wordpress  # Thay đổi đường dẫn nếu cần thiết
-          remote-dir: /public_html  # Đường dẫn trên máy chủ FTP
+          port: 21
+          protocol: ftp
+          local-dir: ./dist  # Thư mục cần triển khai
+          server-dir: ./public_html  # Thư mục `public_html` trên server
