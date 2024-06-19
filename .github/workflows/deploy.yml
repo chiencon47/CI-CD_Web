@@ -37,18 +37,20 @@ jobs:
 
       - name: Copy only changed files to dist
         run: |
-           mkdir -p dist
+           # Tạo thư mục dist nếu chưa tồn tại
+            mkdir -p dist
+
             # Lấy danh sách các tệp đã thay đổi
-            changed_files=$(git diff --name-only HEAD^ HEAD)
+            $changed_files = git diff --name-only HEAD^ HEAD
 
             # Duyệt qua từng tệp và in ra đường dẫn của thư mục chứa nó
-            for file in $changed_files; do
-              dir=$(dirname "$file")
-              echo "Đường dẫn thư mục chứa tệp thay đổi: $dir"
+            foreach ($file in $changed_files) {
+              $dir = [System.IO.Path]::GetDirectoryName($file)
+              Write-Output "Đường dẫn thư mục chứa tệp thay đổi: $dir"
               
               # Sao chép tệp đã thay đổi vào thư mục dist
-              rsync -R "$file" dist/
-            done
+              rsync -R $file dist/
+            }
 
       # - name: Deploy to FTP server
       #   uses: SamKirkland/FTP-Deploy-Action@4.0.0
