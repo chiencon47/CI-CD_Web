@@ -49,7 +49,7 @@ jobs:
             } else {
                 Write-Output "Không có commit trước đó để so sánh."
             }
-          shell: pwsh
+        shell: pwsh
 
       # - name: Deploy to FTP server
       #   uses: SamKirkland/FTP-Deploy-Action@4.0.0
