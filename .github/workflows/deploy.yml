@@ -37,25 +37,8 @@ jobs:
 
       - name: Copy only changed files to dist
         run: |
-          powershell -Command "& {
-            $sourceDir = '.\\nginx-1.27.0\\html\\wordpress\\';
-            $destinationDir = '.\\dist\\';
-            if (-Not (Test-Path $destinationDir)) {
-              New-Item -ItemType Directory -Force -Path $destinationDir;
-            }
-            $sourceFiles = Get-ChildItem -Path $sourceDir -Recurse;
-            $destinationFiles = Get-ChildItem -Path $destinationDir -Recurse;
-
-            $changes = Compare-Object -ReferenceObject $sourceFiles -DifferenceObject $destinationFiles -Property FullName, LastWriteTime, Length -PassThru | Where-Object { $_.SideIndicator -eq '<=' };
-            
-            foreach ($file in $changes) {
-              $destinationPath = $file.FullName.Replace($sourceDir, $destinationDir);
-              $destinationFolder = Split-Path -Path $destinationPath -Parent;
-              if (-Not (Test-Path $destinationFolder)) {
-                New-Item -ItemType Directory -Force -Path $destinationFolder;
-              }
-              Copy-Item -Path $file.FullName -Destination $destinationPath -Force;
-            }
+          mkdir -p dist
+          git diff --name-only HEAD^ HEAD | xargs -I{} rsync -R {} dist/
           }
 
       - name: Deploy to FTP server
