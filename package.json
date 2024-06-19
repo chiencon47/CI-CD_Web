@@ -6,7 +6,7 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "start": "node index.js",
-        "build": "cp -r src/* dist/"
+        "build": "powershell -Command \"New-Item -ItemType Directory -Force -Path dist; Copy-Item -Path 'wordpress\\*' -Destination 'dist\\' -Recurse -Force\""
     },
     "keywords": [],
     "author": ""
