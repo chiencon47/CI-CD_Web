@@ -39,7 +39,6 @@ jobs:
         run: |
           mkdir -p dist
           git diff --name-only HEAD^ HEAD | xargs -I{} rsync -R {} dist/
-          }
 
       - name: Deploy to FTP server
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
