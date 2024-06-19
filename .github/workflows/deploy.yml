@@ -31,7 +31,7 @@ jobs:
         run: |
           npm install
 
-      - name: Build WordPress theme or plugin (nếu có)
+      - name: Build WordPress theme or plugin
         run: |
           npm run build
 
