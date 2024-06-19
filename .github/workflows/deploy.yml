@@ -56,7 +56,7 @@ jobs:
               }
               Copy-Item -Path $file.FullName -Destination $destinationPath -Force;
             }
-          }"
+          }
 
       - name: Deploy to FTP server
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
