@@ -43,5 +43,5 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21
           protocol: ftp
-          local-dir: ./dist  # Thư mục cần triển khai
+          local-dir: ./dist/  # Thư mục cần triển khai
           server-dir: ./public_html  # Thư mục `public_html` trên server
