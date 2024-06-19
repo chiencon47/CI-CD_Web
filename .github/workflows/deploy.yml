@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest  # Chạy trên Windows
 
     steps:
       - name: Checkout repository
@@ -43,4 +43,3 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           local-dir: ./wordpress  # Thay đổi đường dẫn nếu cần thiết
           remote-dir: /public_html  # Đường dẫn trên máy chủ FTP
-
