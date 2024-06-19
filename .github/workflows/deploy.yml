@@ -31,14 +31,14 @@ jobs:
         run: |
           npm install
 
-      # - name: Build WordPress theme or plugin
-      #   run: |
-      #     npm run build
-
-      - name: Copy only changed files to dist
+      - name: Build WordPress theme or plugin
         run: |
-          mkdir -p dist
-          git diff --name-only HEAD^ HEAD | xargs -I{} rsync -R {} dist/
+          npm run build
+
+      # - name: Copy only changed files to dist
+      #   run: |
+      #     mkdir -p dist
+      #     git diff --name-only HEAD^ HEAD | xargs -I{} rsync -R {} dist/
 
       - name: Deploy to FTP server
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
@@ -48,5 +48,5 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           port: 21
           protocol: ftp
-          local-dir: ./dist/  # Thư mục cần triển khai
-          server-dir: ./public_html/  # Thư mục `public_html` trên server
+          local-dir: ./dist/ 
+          server-dir: ./public_html/  
