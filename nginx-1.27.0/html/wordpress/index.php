@@ -11,7 +11,7 @@
  *
  * @var bool
  */
-echo "hello chien aaa";
+echo "hello chien c";
 define( 'WP_USE_THEMES', true );
 /** Loads the WordPress Environment and Template */
 require __DIR__ . '/wp-blog-header.php';

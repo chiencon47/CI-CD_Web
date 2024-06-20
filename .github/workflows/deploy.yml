@@ -31,33 +31,17 @@ jobs:
         run: |
           npm install
 
-      # - name: Build WordPress theme or plugin
-      #   run: |
-      #     npm run build
-
-      - name: Copy only changed files to dist
+      - name: Build WordPress theme or plugin
         run: |
-           run: |
-            mkdir -p dist
-            if (git rev-parse HEAD^ --quiet) {
-                $changed_files = git diff --name-only HEAD^ HEAD
-                foreach ($file in $changed_files) {
-                    $dir = [System.IO.Path]::GetDirectoryName($file)
-                    Write-Output "Đường dẫn thư mục chứa tệp thay đổi: $dir"
-                    rsync -R $file dist/
-                }
-            } else {
-                Write-Output "Không có commit trước đó để so sánh."
-            }
-        shell: pwsh
+          npm run build
 
-      # - name: Deploy to FTP server
-      #   uses: SamKirkland/FTP-Deploy-Action@4.0.0
-      #   with:
-      #     server: ${{ secrets.FTP_SERVER }}
-      #     username: ${{ secrets.FTP_USERNAME }}
-      #     password: ${{ secrets.FTP_PASSWORD }}
-      #     port: 21
-      #     protocol: ftp
-      #     local-dir: ./dist/ 
-      #     server-dir: ./public_html/  
+      - name: Deploy to FTP server
+        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: 21
+          protocol: ftp
+          local-dir: ./dist/ 
+          server-dir: ./public_html/  
